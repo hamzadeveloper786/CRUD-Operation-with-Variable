@@ -27,8 +27,8 @@ window.getAllPost = () =>  {
             let posts = ``
             response.data.map((eachPost) => {
                 posts += `<div id='card-${eachPost.id}' class="posts">
-                <h3>${eachPost.text}</h3>
-                <p>${eachPost.title}</p>
+                <h3>${eachPost.title}</h3>
+                <p>${eachPost.text}</p>
                 <button onclick="deletePost('${eachPost.id}')">Delete</button>
                 <button onclick="editPost('${eachPost.id}','${eachPost.title}','${eachPost.text}', )">Edit</button>
                 </div>`
@@ -59,10 +59,10 @@ window.deletePost = (postId) => {
 
     document.querySelector(`#card-${postId}`).innerHTML =
         `<form onsubmit="savePost('${postId}')">
-            title: <input type='text' value='${title}' id='title-${postId}' />
-            <br/>
-            text: <input type='text' value='${text}' id='text-${postId}' />
-            <br/>
+        title: <input type='text' value='${title}' id='title-${postId}' />
+        <br/>
+        text: <input type='text' value='${text}' id='text-${postId}' />
+        <br/>
             <button>Save</button>
 
         </form>`
@@ -72,8 +72,8 @@ window.savePost = (postId)=>{
     const updatedText = document.querySelector(`#text-${postId}`).value;
 
     axios.put(`/api/v1/post/${postId}`, {
-        text: updatedTitle,
-        title: updatedText
+        title: updatedTitle,
+        text: updatedText
     })
         .then(function (response) {
             console.log(response.data);

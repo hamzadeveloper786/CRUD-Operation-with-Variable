@@ -5,8 +5,8 @@ let router = express.Router()
 let posts = [
     {
         id: nanoid(),
-        text: "some text",
-        title: "abc post title",
+        title: "Hello",
+        text: "Write some text...",
     }
 ];
 
@@ -20,8 +20,8 @@ router.post('/post', (req, res, next) => {
 
     posts.unshift({
         id: nanoid(),
-        text: req.body.title,
-        title: req.body.text,
+        title: req.body.title,
+        text: req.body.text,
     })
     res.status(200).send('Post created successfully!');
 })
@@ -60,8 +60,8 @@ router.put('/post/:postId', (req, res, next) => {
     for (let i = 0; i < posts.length; i++) {
         if (posts[i].id === req.params.postId) {
             posts[i] = {
-                text: req.body.text,
                 title: req.body.title,
+                text: req.body.text,
             }
             res.send('post updated with id ' + req.params.postId);
             return;
@@ -74,7 +74,7 @@ router.delete('/post/:postId', (req, res, next) => {
 
     for (let i = 0; i < posts.length; i++) {
         if (posts[i].id === req.params.postId) {
-            res.status(200).send("post delete successfully")
+            res.status(200).send("Post deleted successfully")
             posts.splice(i, 1);
             return;
         }
